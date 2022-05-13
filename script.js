@@ -8,22 +8,25 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
+const book1 = new Book('Dune', 'Frank Herbert', '548', true);
+const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true);
+const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', false);
+myLibrary[0] = book1;
+myLibrary[1] = book2;
+myLibrary[2] = book3;
+
+repopLibrary();
+
 function addBookToLibrary(newBook) {
     newBook.shelfNum = myLibrary.length;
     myLibrary.push(newBook);
 }
 
-const book1 = new Book('Dune', 'Frank Herbert', '548', true);
-const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true);
-const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', true);
-myLibrary[0] = book1;
-myLibrary[1] = book2;
-myLibrary[2] = book3;
-
 function repopLibrary () {
-    for (let book in myLibrary) {
+    shelf.innerHTML = '';
+    myLibrary.forEach((book) => {
         addToShelf(book);
-    }
+    })
 }
 
 function addToShelf (book) {
@@ -67,11 +70,15 @@ function addToShelf (book) {
     readBtn.classList.add('card-footer-item');
     deleteBtn.classList.add('card-footer-item');
 
+    column.setAttribute('index', myLibrary.indexOf(book))
+    readStatus.id = 'read-status-'+toKebabCase(book.title);
+
     //Add content from book to new HTML card
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = 'Pages: ' + book.pages;
     deleteBtn.textContent = 'Delete';
+    //Apply certain classes and text content depening on whether the book is marked as read
     if(book.read) {
         readStatus.textContent = 'Read';
         readBtn.textContent = 'Mark as Unread';
@@ -84,7 +91,14 @@ function addToShelf (book) {
     const time = new Date();
     timeAdded.textContent = 'Added: ' + time.toLocaleString();
 
+    //Add new HTMl to DOM
     shelf.appendChild(column);
+    console.log(myLibrary.indexOf(book) + " test scs");
 }
 
-addToShelf(myLibrary[2]);
+function toKebabCase (string) {
+	return string 
+		.replace(/([a-z])([A-Z])/g, "$1-$2")
+		.replace(/[\s_]+/g, '-')
+		.toLowerCase();
+}
