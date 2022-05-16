@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/4420b7d6ab.js" crossorigin="anonymous"></script>
+    <script src="./modal.js"></script>
 </head>
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -18,25 +19,25 @@
           <span class="title">My Library</span>
         </a>
       </div>
-        <div class="navbar-end">
-          <div class="navbar-item">
-              <a href="https://github.com/spuddister" target="_blank">
-                  <span>spuddister</span>
-                  <span class="icon"><i class='fa fa-github'></i></span>
-              </a>
-          </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="has-text-dark" href="https://github.com/spuddister" target="_blank">
+              <span>spuddister</span>
+              <span class="icon">
+                <i class='fa fa-github'></i>
+              </span>
+          </a>
         </div>
       </div>
     </nav>
     
-    <nav id="empty-library-tag" class="level">
-      <div class="level-item has-text-centered">
-        <div class="box">
-          <p class="is-size-7">There's nothing here...</p>
-          <p>To get started, add a book.</p>
-        </div>
-      </div>
-    </nav>
+    <div class="container has-text-right mb-4">
+      <button id="add-book-button" class="button is-large has-text-primary has-background-primary-light js-modal-trigger" data-target="modal-new-book">
+        <span class="icon">
+          <i class="fas fa-plus"></i>
+        </span>
+      </button>
+    </div>
 
     <div class="container">
       <div class="columns is-multiline is-centered">
@@ -58,6 +59,32 @@
               </div>
           </div> -->
       </div>
-  </div>
+    </div>
+
+    <div id="empty-library-text" class="level">
+      <div class="level-item has-text-centered">
+        <div class="box">
+          <p class="is-size-7">There's nothing here...</p>
+          <p>To get started, add a book.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal" id="modal-new-book">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Add Book</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p>insert form here</p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Save changes</button>
+          <button class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>
 </body>
 </html>

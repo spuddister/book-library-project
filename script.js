@@ -1,5 +1,6 @@
 let myLibrary = [];
 const shelf = document.getElementsByClassName('columns')[0];
+const emptyLibTxt = document.getElementById('empty-library-text');
 
 function Book(title, author, pages, read) {
     this.title = title,
@@ -17,6 +18,9 @@ myLibrary[2] = book3;
 
 repopLibrary();
 
+
+//FUNCTIONS 
+
 function addBookToLibrary(newBook) {
     newBook.shelfNum = myLibrary.length;
     myLibrary.push(newBook);
@@ -24,9 +28,13 @@ function addBookToLibrary(newBook) {
 
 function repopLibrary () {
     shelf.innerHTML = '';
-    myLibrary.forEach((book) => {
-        addToShelf(book);
-    })
+    if (!emptyLib()) {
+        myLibrary.forEach((book) => {
+            addToShelf(book);
+        })
+    } else {
+        return;
+    }
 }
 
 function addToShelf (book) {
@@ -68,7 +76,7 @@ function addToShelf (book) {
     timeAdded.classList.add('has-text-right','is-size-7');
     cardFooter.classList.add('card-footer');
     readBtn.classList.add('card-footer-item');
-    deleteBtn.classList.add('card-footer-item');
+    deleteBtn.classList.add('card-footer-item','has-text-danger');
 
     column.setAttribute('index', myLibrary.indexOf(book))
     readStatus.id = 'read-status-'+toKebabCase(book.title);
@@ -101,4 +109,14 @@ function toKebabCase (string) {
 		.replace(/([a-z])([A-Z])/g, "$1-$2")
 		.replace(/[\s_]+/g, '-')
 		.toLowerCase();
+}
+
+function emptyLib () {
+    if (myLibrary.length == 0) {
+        emptyLibTxt.style.display = 'initial';
+        return true;
+    } else {
+        emptyLibTxt.style.display = 'none';
+        return false;
+    }
 }
