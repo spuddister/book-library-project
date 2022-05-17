@@ -78,10 +78,42 @@
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-          <p>insert form here</p>
+
+          <div class="field">
+            <label class="label">Book Title</label>
+            <div class="control">
+              <input id="title-input" class="input" type="text" placeholder="e.g Dune">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Author</label>
+            <div class="control">
+              <input id="author-input" class="input" type="text" placeholder="e.g Frank Herbert">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Number of Pages</label>
+            <div class="control">
+              <input id="pages-input" class="input" type="text" placeholder="e.g 548">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Read</label>
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="read-input" id="read-input">
+                Yes
+              </label>
+              <label class="radio">
+                <input type="radio" name="read-input" id="unread-input" checked>
+                No
+              </label>
+            </div>
+          </div>
+
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success">Save changes</button>
+          <button id="save-book-btn" class="button is-success">Save Book</button>
           <button class="button">Cancel</button>
         </footer>
       </div>
