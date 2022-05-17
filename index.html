@@ -114,9 +114,25 @@
         </section>
         <footer class="modal-card-foot">
           <button id="save-book-btn" class="button is-success">Save Book</button>
-          <button class="button">Cancel</button>
+          <button class="button cancel">Cancel</button>
         </footer>
       </div>
+    </div>
+
+    <div class="modal" id="modal-duplicate-title">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <article class="message is-danger">
+          <div class="message-header">
+            <p>Duplicate book</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body">
+            You already have this book in your library.
+          </div>
+        </article>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
 </body>
 </html>

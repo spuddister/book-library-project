@@ -7,16 +7,19 @@ const pagesInput = document.getElementById('pages-input');
 const readRadioBtn = document.getElementById('read-input');
 const unreadRadioBtn = document.getElementById('unread-input');
 const saveBtn = document.getElementById('save-book-btn').addEventListener('click', submitNewBook);
+const modalNewBook = document.getElementById('modal-new-book');
+const modalDupTitle = document.getElementById('modal-duplicate-title');
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, time) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read
+    this.read = read,
+    this.time = time
 }
 
-const book1 = new Book('Dune', 'Frank Herbert', '548', true);
-const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true);
+const book1 = new Book('Dune', 'Frank Herbert', '548', true, '2022-01-29, 6:14:53 a.m.');
+const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true, '2022-05-17, 4:52:33 p.m.');
 const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', false);
 myLibrary[0] = book1;
 myLibrary[1] = book2;
@@ -34,19 +37,30 @@ function submitNewBook () {
     newBookObject.title = titleInput.value;
     newBookObject.author = authorInput.value;
     newBookObject.pages = pagesInput.value;
+    readRadioBtn.checked? newBookObject.read = true : newBookObject.read = false;
 
-    if (readRadioBtn.checked) {
-        newBookObject.read = 'Read';
-    } else {
-        newBookObject.read = 'Unread';
+    //Check for dulplicate books
+    if (!checkForRepeatTitle(newBookObject.title)) {     
+        return;
     }
-
+    //Set time added to library
     let time = new Date();
     newBookObject.time = time.toLocaleString();
     newBookObject.index = myLibrary.length - 1;
+    
+    modalNewBook.classList.remove('is-active');
 
     addBookToLibrary(newBookObject);
     formReset();
+}
+
+function checkForRepeatTitle (newTitle) {
+    myLibrary.forEach(book => {
+        if (book.title.toLowerCase() == newTitle.toLowerCase()) {
+            formReset();
+            modalDupTitle.classList.add('is-active');
+        }
+    })
 }
 
 function formReset () {
