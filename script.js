@@ -18,6 +18,8 @@ function Book(title, author, pages, read, time) {
     this.time = time
 }
 
+
+//Filler Books, decided to leave them in
 const book1 = new Book('Dune', 'Frank Herbert', '548', true, '2022-01-29, 6:14:53 a.m.');
 const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true, '2022-05-02, 4:52:33 p.m.');
 const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', false, '2022-05-17, 1:25:24 p.m.');
@@ -84,13 +86,6 @@ function repopLibrary () {
             addToShelf(book);
         })
     }
-}
-
-function toKebabCase (string) {
-	return string 
-		.replace(/([a-z])([A-Z])/g, "$1-$2")
-		.replace(/[\s_]+/g, '-')
-		.toLowerCase();
 }
 
 function emptyLib () {
@@ -164,9 +159,6 @@ function addToShelf (book) {
     cardFooter.classList.add('card-footer');
     readBtn.classList.add('card-footer-item');
     deleteBtn.classList.add('card-footer-item','has-text-danger');
-
-    column.setAttribute('bookindex', myLibrary.indexOf(book))
-    readStatus.id = 'read-status-'+toKebabCase(book.title);
 
     //Add content from book to new HTML card
     title.textContent = book.title;
