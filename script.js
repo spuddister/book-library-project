@@ -19,8 +19,8 @@ function Book(title, author, pages, read, time) {
 }
 
 const book1 = new Book('Dune', 'Frank Herbert', '548', true, '2022-01-29, 6:14:53 a.m.');
-const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true, '2022-05-17, 4:52:33 p.m.');
-const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', false);
+const book2 = new Book('The Way of Shadows', 'Brent Weeks', '632', true, '2022-05-02, 4:52:33 p.m.');
+const book3 = new Book('Project Hail Mary', 'Andy Weir', '497', false, '2022-05-17, 1:25:24 p.m.');
 myLibrary[0] = book1;
 myLibrary[1] = book2;
 myLibrary[2] = book3;
@@ -35,12 +35,11 @@ repopLibrary();
 function submitNewBook () {
     let newBookObject = new Book();
     newBookObject.title = titleInput.value;
-    newBookObject.author = authorInput.value;
-    newBookObject.pages = pagesInput.value;
+    authorInput.value == ''? newBookObject.author = 'Author: Unknown' : newBookObject.author = authorInput.value;
+    pagesInput.value == ''? newBookObject.pages = 'N/A' : newBookObject.pages = pagesInput.value;
     readRadioBtn.checked? newBookObject.read = true : newBookObject.read = false;
-
     //Check for dulplicate books
-    if (!checkForRepeatTitle(newBookObject.title)) {     
+    if (checkForRepeatTitle(newBookObject.title)) {     
         return;
     }
     //Set time added to library
@@ -55,12 +54,15 @@ function submitNewBook () {
 }
 
 function checkForRepeatTitle (newTitle) {
+    let repeat = false;
     myLibrary.forEach(book => {
         if (book.title.toLowerCase() == newTitle.toLowerCase()) {
             formReset();
             modalDupTitle.classList.add('is-active');
+            repeat = true;
         }
     })
+    return repeat;
 }
 
 function formReset () {
@@ -101,6 +103,16 @@ function emptyLib () {
     }
 }
 
+function deleteBook (book) {
+    myLibrary.splice(book.getAttribute('bookindex'), 1);
+    repopLibrary();
+}
+
+function toggleRead (index) {
+    myLibrary[index.getAttribute('bookindex')].read = !myLibrary[index.getAttribute('bookindex')].read;
+    repopLibrary();
+}
+
 function addToShelf (book) {
     //Build HTML components for new card - many div components due to Bulma Framework
     let column = document.createElement('div');
@@ -129,6 +141,17 @@ function addToShelf (book) {
     cardFooter.appendChild(readBtn);
     cardFooter.appendChild(deleteBtn);
 
+    //Add attribute to ensure correct book is altered when buttons are pressed
+    cardFooter.setAttribute('bookindex', myLibrary.indexOf(book))
+    
+    //Add event listeners to the buttons
+    readBtn.addEventListener('click', (e) => {
+        toggleRead(e.target.parentElement);
+    });
+    deleteBtn.addEventListener('click', (e) => {
+        deleteBook(e.target.parentElement);
+    });
+
     //Add classes to apply Bulma properties
     column.classList.add('column','is-one-third');
     card.classList.add('card');
@@ -142,7 +165,7 @@ function addToShelf (book) {
     readBtn.classList.add('card-footer-item');
     deleteBtn.classList.add('card-footer-item','has-text-danger');
 
-    column.setAttribute('index', myLibrary.indexOf(book))
+    column.setAttribute('bookindex', myLibrary.indexOf(book))
     readStatus.id = 'read-status-'+toKebabCase(book.title);
 
     //Add content from book to new HTML card
@@ -164,5 +187,4 @@ function addToShelf (book) {
 
     //Add new HTMl to DOM
     shelf.appendChild(column);
-    console.log(myLibrary.indexOf(book) + " test scs");
 }
