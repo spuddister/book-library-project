@@ -10,12 +10,14 @@ const saveBtn = document.getElementById('save-book-btn').addEventListener('click
 const modalNewBook = document.getElementById('modal-new-book');
 const modalDupTitle = document.getElementById('modal-duplicate-title');
 
-function Book(title, author, pages, read, time) {
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read,
-    this.time = time
+class Book {
+    constructor (title, author, pages, read, time) {
+        this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.read = read,
+        this.time = time
+    }
 }
 
 
