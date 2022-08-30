@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Library</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
-    <script src="https://kit.fontawesome.com/4420b7d6ab.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/4420b7d6ab.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./modal.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
@@ -21,18 +30,26 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <a class="has-text-dark" href="https://github.com/spuddister" target="_blank">
-              <span>spuddister</span>
-              <span class="icon">
-                <i class='fa fa-github'></i>
-              </span>
+          <a
+            class="has-text-dark"
+            href="https://github.com/spuddister"
+            target="_blank"
+          >
+            <span>spuddister</span>
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
           </a>
         </div>
       </div>
     </nav>
-    
+
     <div class="container has-text-right mb-4">
-      <button id="add-book-button" class="button is-large has-text-primary has-background-primary-light js-modal-trigger" data-target="modal-new-book">
+      <button
+        id="add-book-button"
+        class="button is-large has-text-primary has-background-primary-light js-modal-trigger"
+        data-target="modal-new-book"
+      >
         <span class="icon">
           <i class="fas fa-plus"></i>
         </span>
@@ -41,7 +58,7 @@
 
     <div class="container">
       <div class="columns is-multiline is-centered">
-          <!-- <div class="column is-one-third">
+        <!-- <div class="column is-one-third">
               <div class="card">
                   <div class="card-content">
                     <div class="content">
@@ -69,7 +86,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="modal" id="modal-new-book">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -78,42 +95,69 @@
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-
           <div class="field">
             <label class="label">Book Title</label>
             <div class="control">
-              <input id="title-input" class="input" type="text" placeholder="e.g Dune">
+              <input
+                id="title-input"
+                class="input"
+                type="text"
+                placeholder="e.g Dune"
+                minlength="1"
+                maxlength="50"
+                required
+              />
             </div>
           </div>
           <div class="field">
             <label class="label">Author</label>
             <div class="control">
-              <input id="author-input" class="input" type="text" placeholder="e.g Frank Herbert">
+              <input
+                id="author-input"
+                class="input"
+                type="text"
+                placeholder="e.g Frank Herbert"
+                required
+              />
             </div>
           </div>
           <div class="field">
             <label class="label">Number of Pages</label>
             <div class="control">
-              <input id="pages-input" class="input" type="text" placeholder="e.g 548">
+              <input
+                id="pages-input"
+                class="input"
+                type="number"
+                placeholder="e.g 548"
+                min="1"
+                max="2000"
+                required
+              />
             </div>
           </div>
           <div class="field">
             <label class="label">Read</label>
             <div class="control">
               <label class="radio">
-                <input type="radio" name="read-input" id="read-input">
+                <input type="radio" name="read-input" id="read-input" />
                 Yes
               </label>
               <label class="radio">
-                <input type="radio" name="read-input" id="unread-input" checked>
+                <input
+                  type="radio"
+                  name="read-input"
+                  id="unread-input"
+                  checked
+                />
                 No
               </label>
             </div>
           </div>
-
         </section>
         <footer class="modal-card-foot">
-          <button id="save-book-btn" class="button is-success">Save Book</button>
+          <button id="save-book-btn" class="button is-success">
+            Save Book
+          </button>
           <button class="button cancel">Cancel</button>
         </footer>
       </div>
@@ -134,5 +178,5 @@
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
-</body>
+  </body>
 </html>
