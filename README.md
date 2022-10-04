@@ -1,6 +1,6 @@
 # Book Library Project
 
-For this project from [The Odin Project](https://www.theodinproject.com/) Curriculum in the Javascript course, I built a book shelf to showcase my object oriented Javascript skills using Bulma as a CSS Framework..
+For this project from [The Odin Project](https://www.theodinproject.com/) Curriculum in the Javascript course, I built a book shelf to showcase my object oriented Javascript skills using Bulma CSS Framework..
 
 ### New Skills
 - CSS Frameworks (Bulma)
